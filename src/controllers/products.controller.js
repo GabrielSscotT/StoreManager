@@ -21,6 +21,7 @@ const addNewProduct = async (req, res) => {
     if (type) {
         return res.status(errorMap(type)).json({ message });
     }
+    // console.log(message)
     return res.status(201).json(message);
 };
 

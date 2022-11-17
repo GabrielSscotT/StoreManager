@@ -20,6 +20,7 @@ const newProduct = async (productName) => {
         return error;
     }
     const product = await productsModel.addNew(productName);
+    // console.log(product)
     return { type: null, message: { id: product, name: productName } };
 };
 
