@@ -1,4 +1,4 @@
-const { validateProduct } = require('../middlewares/validateproduct');
+const { validateProduct } = require('../middlewares/validateProduct');
 const productsModel = require('../models/products.model');
 
 const productList = async () => {
@@ -20,7 +20,6 @@ const newProduct = async (productName) => {
         return error;
     }
     const product = await productsModel.addNew(productName);
-    // console.log(product)
     return { type: null, message: { id: product, name: productName } };
 };
 
