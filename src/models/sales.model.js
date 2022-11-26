@@ -18,4 +18,4 @@ const insertSaleProducts = async ({ saleId, productId, quantity }) => {
 module.exports = {
     insertSale,
     insertSaleProducts,
-}
+};
