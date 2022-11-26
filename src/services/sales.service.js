@@ -33,6 +33,22 @@ const isExistingProduct = async (list) => {
   return { type: null, message: { id: saleId, itemsSold: list } };
   };
 
+  const saleList = async () => {
+    const sales = await salesModel.getSales();
+    return sales;
+  };
+
+  const saleById = async (id) => {
+    const sale = await salesModel.getSalesById(id);
+    if (!sale.length > 0) {
+        return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+    }
+  
+    return { type: null, message: sale };
+  };
+
 module.exports = {
     newSale,
+    saleList,
+    saleById,
 };
