@@ -63,13 +63,9 @@ const productsService = require('./products.service');
     if (!sale.length > 0) {
       return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
     }
-
-    const result = await Promise.all(
-      list.map((e) => salesModel.updateSale(id, e)),
-    );
     
-    console.log(result);
-    return { type: null, message: { saleId: id, itemsUpdated: [...list] } };
+    list.map((e) => salesModel.updateSale(id, e))
+    return { type: null, message: { saleId: id, itemsUpdated: {...list} } };
   };
 
 module.exports = {
