@@ -31,6 +31,30 @@ describe("Testes model de vendas", function(){
                   "quantity": 2
                 }
             ]);
+        });
+    });
+    describe("Puxando uma venda", function() {
+        before(async function () {
+            sinon.stub(connection, "execute").resolves(salesMock.venda1);
         })
-    })
-})
+        after(async function() {
+            connection.execute.restore();
+        })
+        it("Teste função getSalesById", async function() {
+            const result = await salesModel.getSalesById(1);
+
+            expect(result).to.be.deep.equal(
+                {
+                  "date": "2021-09-09T04:54:29.000Z",
+                  "productId": 1,
+                  "quantity": 2
+                },
+                {
+                  "date": "2021-09-09T04:54:54.000Z",
+                  "productId": 2,
+                  "quantity": 2
+                }
+              );
+        });
+    });
+});

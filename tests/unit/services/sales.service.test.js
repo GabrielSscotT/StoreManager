@@ -24,4 +24,23 @@ describe("Testes service de vendas", function() {
             expect(result).to.be.deep.equal(salesMock.vendas);
         });
     });
+    describe("Puxando uma venda", function(){
+        afterEach(async function(){
+            sinon.restore();
+        })
+        it("O retorno da função saleById é um objeto ?", async function() {
+            sinon.stub(salesModel, "getSalesById").resolves(salesMock.venda1);
+
+            const result = await salesService.saleById(1);
+
+            expect(result instanceof Object).to.equal(true);
+        });
+        it("Teste função saleById",  async function() {
+            sinon.stub(salesModel, "getSalesById").resolves(salesMock.venda1);
+
+            const result = await salesService.saleById(1);
+
+            expect(result.message).to.deep.equal(salesMock.venda1);
+        })
+    })
 });
