@@ -1,6 +1,4 @@
 const { expect } = require("chai");
-const chai = require("chai");
-const { func } = require("joi");
 const sinon = require("sinon");
 
 const productsController = require("../../../src/controllers/products.controller");
