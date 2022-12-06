@@ -64,8 +64,8 @@ const productsService = require('./products.service');
       return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
     }
     
-    list.map((e) => salesModel.updateSale(id, e))
-    return { type: null, message: { saleId: id, itemsUpdated: {...list} } };
+    list.map((e) => salesModel.updateSale(id, e));
+    return { type: null, message: { saleId: id, itemsUpdated: { ...list } } };
   };
 
 module.exports = {

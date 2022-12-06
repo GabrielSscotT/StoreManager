@@ -48,7 +48,6 @@ const updateSale = async (saleId, sale) => {
         'UPDATE StoreManager.sales_products SET quantity = ? WHERE sale_id = ? AND product_id = ?',
         [quantity, saleId, productId],
      ); 
-    
 };
 
 module.exports = {
