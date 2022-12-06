@@ -47,8 +47,18 @@ const isExistingProduct = async (list) => {
     return { type: null, message: sale };
   };
 
+  const deleteSale = async (saleId) => {
+    const sale = await salesModel.getSalesById(saleId);
+    if (!sale.length > 0) {
+      return { type: 'SALE_NOT_FOUND', message: 'Sale not found' };
+    }
+    await salesModel.deleteSale(saleId);
+    return { type: null };
+  };
+
 module.exports = {
     newSale,
     saleList,
     saleById,
+    deleteSale,
 };

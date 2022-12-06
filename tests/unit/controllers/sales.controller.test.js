@@ -70,7 +70,7 @@ describe("Testes controller de vendas", function() {
 
             expect(res.json.calledWith(salesMock.venda1)).to.be.true;
         })
-        it("Teste função showSalesById", async function(){
+        it("Se não encontrar uma venda chama o código 404", async function(){
             sinon
               .stub(salesService, "saleById")
               .resolves({ type: "SALE_NOT_FOUND", message: "Sale not found" });
