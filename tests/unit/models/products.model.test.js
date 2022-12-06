@@ -24,4 +24,18 @@ describe("Testes model de produtos", function() {
             ]);
         });
     });
+
+    describe("Puxando um produto", function (){
+        before(async function () {
+            sinon.stub(connection, "execute").resolves([[productsMock.products[0]]]);
+        });
+        after(async function () {
+            connection.execute.restore();
+        });
+        it("Test função findById", async function () {
+            const result = await productsModel.findById(1);
+
+            expect(result).to.be.deep.equal({ id: 1, name: "Martelo de Thor" });
+        });
+    });
 });
