@@ -65,13 +65,12 @@ const productsService = require('./products.service');
     }
 
     const result = await Promise.all(
-      list.map((sale)=> salesModel.updateSale(id, sale))
+      list.map((e) => salesModel.updateSale(id, e)),
     );
     
-    console.log(result)
+    console.log(result);
     return { type: null, message: { saleId: id, itemsUpdated: [...list] } };
-  }
-
+  };
 
 module.exports = {
     newSale,

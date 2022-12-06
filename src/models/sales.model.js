@@ -7,8 +7,8 @@ const insertSale = async (sales) => {
     
     await Promise.all(sales.map(async (sale) => {
         await connection.execute(
-            'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUE(?, ?, ?)',
-            [insertId, sale.productId, sale.quantity],
+          'INSERT INTO StoreManager.sales_products (sale_id, product_id, quantity) VALUE(?, ?, ?)',
+          [insertId, sale.productId, sale.quantity],
         );
     }));
     return insertId;
@@ -50,7 +50,7 @@ const updateSale = async (saleId, sale) => {
      ); 
     
     return result; 
-}
+};
 
 module.exports = {
     insertSale,

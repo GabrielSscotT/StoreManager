@@ -42,7 +42,8 @@ const updateSaleById = async (req, res) => {
         return res.status(errorMap(type)).json({ message });
     }
     return res.status(200).json(message);
-}
+};
+
 module.exports = {
     addSale,
     showAllSales,
