@@ -154,7 +154,7 @@ describe("Testes controller de produtos", function() {
 
             await productsController.deleteProductById(req, res);
 
-            expect(res.status.calledWith()).to.be.true;
+            expect(res.json.calledWith()).to.be.true;
         })
     })    
 });
