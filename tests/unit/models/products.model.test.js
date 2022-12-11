@@ -32,10 +32,24 @@ describe("Testes model de produtos", function() {
         after(async function () {
             connection.execute.restore();
         });
-        it("Test função findById", async function () {
+        it("Teste função findById", async function () {
             const result = await productsModel.findById(1);
 
             expect(result).to.be.deep.equal({ id: 1, name: "Martelo de Thor" });
         });
     });
+    describe("Adicionando produto", function() {
+        before(async function () {
+            sinon.stub(connection, "execute").resolves(productsMock.newId);
+        });
+        after(async function () {
+            connection.execute.restore();
+        });
+        it("Teste função addNew", async function () {
+            const result = await productsModel.addNew(productsMock.productName);
+            console.log(result)
+
+            expect(result).to.be.deep.equal(4)
+        })
+    })
 });

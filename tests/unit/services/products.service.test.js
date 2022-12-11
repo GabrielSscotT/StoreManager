@@ -53,4 +53,23 @@ describe("Testes service de produtos", function() {
             expect(result.message).to.deep.equal("Product not found");
         });
     });
+    describe("Adicionando produto", function() {
+        afterEach(async function () {
+            sinon.restore();
+        });
+        it("O retorno da função newProduct é um objeto ?", async function() {
+            sinon.stub(productsModel, "addNew").resolves(productsMock.productName);
+
+            const result = await productsModel.addNew(productsMock.productName);
+
+            expect(result instanceof Object).to.equal(true);
+        });
+        it("Teste função newProduct",  async function() {
+            sinon.stub(productsModel, "addNew").resolves(4);
+
+            const result = await productsService.newProduct('Produto1');
+
+            expect(result.message).to.deep.equal(productsMock.productAddResult);
+        })
+    })
 });

@@ -87,4 +87,39 @@ describe("Testes controller de produtos", function() {
             expect(res.json.calledWith({ message: "Product not found" })).to.be.true;
         })
     })
+    describe("Adicionando Produto", function() {
+        afterEach(async function() {
+            sinon.restore();
+        });
+        it("A requisição tem como resultado o código 201?", async function(){
+            sinon
+            .stub(productsService, "newProduct")
+            .resolves({ type: null, message: productsMock.productAddResult})
+
+            const req = { body: productsMock.productName }
+            const res = {}
+
+            res.status = sinon.stub().returns(res);
+            res.json = sinon.stub().returns();
+
+            await productsController.addNewProduct(req, res);
+
+            expect(res.status.calledWith(201)).to.be.true;
+        })
+        it("Teste função addNewProduct", async function(){
+            sinon
+            .stub(productsService, "newProduct")
+            .resolves({ type: null, message: productsMock.productAddResult})
+
+            const req = { body: productsMock.productName }
+            const res = {}
+
+            res.status = sinon.stub().returns(res);
+            res.json = sinon.stub().returns();
+
+            await productsController.addNewProduct(req, res);
+
+            expect(res.json.calledWith(productsMock.productAddResult)).to.be.true
+        })
+    })
 });

@@ -57,4 +57,18 @@ describe("Testes model de vendas", function(){
               );
         });
     });
+    describe("Adicionando Venda", function() {
+        before(async function () {
+            sinon.stub(connection, "execute").resolves(salesMock.newId);
+        })
+        after(async function() {
+            connection.execute.restore();
+        })
+        it("Teste função insertSale", async function() {
+            const result = await salesModel.insertSale(salesMock.cadastroEntrada);
+            console.log(result)
+
+            expect(result).to.be.deep.equal(3)
+        })
+    })
 });

@@ -26,7 +26,27 @@ const venda1 = [
     }
   ];
 
+const cadastroEntrada = [
+  {productId:1,quantity:1},
+  {productId:2,quantity:5},
+]
+
+const cadastroSucesso = {
+  "id": 3,
+  "itemsSold": [
+    {
+      "productId": 1,
+      "quantity": 1
+    },
+    {
+      "productId": 2,
+      "quantity": 5
+    }
+  ]
+}
 module.exports = {
     vendas,
     venda1,
+    cadastroEntrada,
+    cadastroSucesso,
 }

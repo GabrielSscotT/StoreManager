@@ -87,4 +87,39 @@ describe("Testes controller de vendas", function() {
             expect(res.json.calledWith({ message: "Sale not found" })).to.be.true;
         })
     })
+    describe("Adicionando Venda", function(){
+        afterEach(async function() {
+            sinon.restore();
+        });
+        it("A requisição tem como resultado o código 201?", async function(){
+            sinon
+            .stub(salesService, "newSale")
+            .resolves({ type: null, message: salesMock.cadastroSucesso})
+
+            const req = { body: salesMock.cadastroEntrada }
+            const res = {}
+
+            res.status = sinon.stub().returns(res);
+            res.json = sinon.stub().returns();
+
+            await salesController.addSale(req, res);
+
+            expect(res.status.calledWith(201)).to.be.true;
+        })
+        it("Teste função addSale", async function(){
+            sinon
+            .stub(salesService, "newSale")
+            .resolves({ type: null, message: salesMock.cadastroSucesso})
+
+            const req = { body: salesMock.cadastroEntrada }
+            const res = {}
+
+            res.status = sinon.stub().returns(res);
+            res.json = sinon.stub().returns();
+
+            await salesController.addSale(req, res);
+
+            expect(res.json.calledWith(salesMock.cadastroSucesso)).to.be.true;
+        }) 
+    })
 });

@@ -1,4 +1,5 @@
 const { expect } = require("chai");
+const { func } = require("joi");
 const sinon = require("sinon");
 
 const salesModel = require("../../../src/models/sales.model");
@@ -41,6 +42,25 @@ describe("Testes service de vendas", function() {
             const result = await salesService.saleById(1);
 
             expect(result.message).to.deep.equal(salesMock.venda1);
+        })
+    })
+    describe("Adicionando venda", function() {
+        afterEach(async function () {
+            sinon.restore();
+        });
+        it("O retorno da função newSale é um objeto ?", async function() {
+            sinon.stub(salesModel, "insertSale").resolves(salesMock.cadastroEntrada);
+
+            const result = await salesService.newSale(salesMock.cadastroEntrada);
+
+            expect(result instanceof Object).to.equal(true);
+        });
+        it("Teste função newSale", async function(){
+            sinon.stub(salesModel, "insertSale").resolves(3);
+
+            const result = await salesService.newSale(salesMock.cadastroEntrada);
+
+            expect(result.message).to.deep.equal(salesMock.cadastroSucesso)
         })
     })
 });
