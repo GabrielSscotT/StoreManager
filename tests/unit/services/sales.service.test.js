@@ -43,6 +43,13 @@ describe("Testes service de vendas", function() {
 
             expect(result.message).to.deep.equal(salesMock.venda1);
         })
+        it("Existe um erro se não existir uma venda com ID específico no banco de dados", async function() {
+            sinon.stub(salesModel, "getSalesById").resolves(3)
+
+            const result = await salesService.saleById(3)
+
+            expect(result.message).to.deep.equal("Sale not found")
+        })
     })
     describe("Adicionando venda", function() {
         afterEach(async function () {
@@ -61,6 +68,18 @@ describe("Testes service de vendas", function() {
             const result = await salesService.newSale(salesMock.cadastroEntrada);
 
             expect(result.message).to.deep.equal(salesMock.cadastroSucesso)
+        })
+    })
+    describe("Deletando Venda", function() {
+        afterEach(async function() {
+            sinon.restore();
+        })
+        it("Teste função deleteProduct", async function() {
+            sinon.stub(salesModel, "deleteSale").resolves();
+
+            const result = await salesService.deleteSale(1);
+
+            expect(result.type).to.deep.equal(null);
         })
     })
 });

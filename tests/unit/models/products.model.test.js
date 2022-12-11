@@ -47,9 +47,21 @@ describe("Testes model de produtos", function() {
         });
         it("Teste função addNew", async function () {
             const result = await productsModel.addNew(productsMock.productName);
-            console.log(result)
 
             expect(result).to.be.deep.equal(4)
+        })
+    })
+    describe("Deletando produto", function() {
+        before(async function () {
+            sinon.stub(connection, "execute").resolves();
+        });
+        after(async function () {
+            connection.execute.restore();
+        });
+        it("Teste função deleteProduct", async function () {
+            const result = await productsModel.deleteProduct(1);
+
+            expect(result).to.be.deep.equal()
         })
     })
 });

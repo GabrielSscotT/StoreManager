@@ -66,9 +66,21 @@ describe("Testes model de vendas", function(){
         })
         it("Teste função insertSale", async function() {
             const result = await salesModel.insertSale(salesMock.cadastroEntrada);
-            console.log(result)
 
             expect(result).to.be.deep.equal(3)
+        })
+    })
+    describe("Deletando Venda", function() {
+        before(async function () {
+            sinon.stub(connection, "execute").resolves();
+        })
+        after(async function() {
+            connection.execute.restore();
+        })
+        it("Teste função insertSale", async function() {
+            const result = await salesModel.deleteSale(1);
+
+            expect(result).to.be.deep.equal()
         })
     })
 });

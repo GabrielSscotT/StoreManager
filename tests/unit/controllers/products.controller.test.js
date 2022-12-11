@@ -122,4 +122,39 @@ describe("Testes controller de produtos", function() {
             expect(res.json.calledWith(productsMock.productAddResult)).to.be.true
         })
     })
+    describe("Deletando produto", function() {
+        afterEach(async function() {
+            sinon.restore();
+        })
+        it("A requisição tem como resultado o código 204?", async function(){
+            sinon
+            .stub(productsService, "deleteProduct")
+            .resolves({ type: null})
+
+            const req = { params: { id: 1 } }
+            const res = {}
+
+            res.status = sinon.stub().returns(res);
+            res.json = sinon.stub().returns();
+
+            await productsController.deleteProductById(req, res);
+
+            expect(res.status.calledWith(204)).to.be.true;
+        })
+        it("Teste função deleteProductById", async function(){
+            sinon
+            .stub(productsService, "deleteProduct")
+            .resolves({ type: null})
+
+            const req = { params: { id: 1 } }
+            const res = {}
+
+            res.status = sinon.stub().returns(res);
+            res.json = sinon.stub().returns();
+
+            await productsController.deleteProductById(req, res);
+
+            expect(res.status.calledWith()).to.be.true;
+        })
+    })    
 });

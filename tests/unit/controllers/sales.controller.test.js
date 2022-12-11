@@ -122,4 +122,39 @@ describe("Testes controller de vendas", function() {
             expect(res.json.calledWith(salesMock.cadastroSucesso)).to.be.true;
         }) 
     })
+    describe("Deletando Venda", function() {
+        afterEach(async function() {
+            sinon.restore();
+        })
+        it("A requisição tem como resultado o código 204?", async function(){
+            sinon
+            .stub(salesService, "deleteSale")
+            .resolves({ type: null})
+
+            const req = { params: { id: 1 } }
+            const res = {}
+
+            res.status = sinon.stub().returns(res);
+            res.json = sinon.stub().returns();
+
+            await salesController.deleteSaleById(req, res);
+
+            expect(res.status.calledWith(204)).to.be.true;
+        })
+        it("Teste função deleteProductById", async function(){
+            sinon
+            .stub(salesService, "deleteSale")
+            .resolves({ type: null})
+
+            const req = { params: { id: 1 } }
+            const res = {}
+
+            res.status = sinon.stub().returns(res);
+            res.json = sinon.stub().returns();
+
+            await salesController.deleteSaleById(req, res);
+
+            expect(res.json.calledWith()).to.be.true;
+        })
+    }) 
 });

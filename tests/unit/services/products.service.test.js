@@ -72,4 +72,16 @@ describe("Testes service de produtos", function() {
             expect(result.message).to.deep.equal(productsMock.productAddResult);
         })
     })
+    describe("Deletando produto", function() {
+        afterEach(async function() {
+            sinon.restore();
+        })
+        it("Teste função deleteProduct", async function() {
+            sinon.stub(productsModel, "deleteProduct").resolves();
+
+            const result = await productsService.deleteProduct(1);
+
+            expect(result.type).to.deep.equal(null);
+        })
+    })
 });
