@@ -35,7 +35,7 @@ const search = async (term) => {
         `SELECT * FROM StoreManager.products WHERE name LIKE "%${term}%"`,
         );
     return result;
-}
+};
 
 module.exports = {
     findAll,

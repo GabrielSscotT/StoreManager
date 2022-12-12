@@ -47,7 +47,8 @@ const searchProductByTerm = async (req, res) => {
     const { q } = req.query;
     const { message } = await productsService.searchProduct(q);
     return res.status(200).json(message);
-}
+};
+
 module.exports = {
     showAllProducts,
     showProductById,

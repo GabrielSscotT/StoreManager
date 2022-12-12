@@ -46,9 +46,9 @@ const deleteProduct = async (productId) => {
 };
 
 const searchProduct = async (term) => {
-    const result = await productsModel.search(term)
-    return { type: null, message: result}
-}
+    const result = await productsModel.search(term);
+    return { type: null, message: result };
+};
 
 module.exports = {
     productList,
